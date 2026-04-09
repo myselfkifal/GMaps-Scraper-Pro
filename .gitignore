@@ -1,0 +1,22 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Thumbs.db:encryptable
+desktop.ini
+
+# Extension specific
+*.pem
+*.crx
+
+# Ignore any generated zip builds
+*.zip
+*.tar
+*.tar.gz
+
+# Note: library files like jspdf.umd.min.js are kept in source control intentionally 
+# so users don't have to run npm install for this simple extension.

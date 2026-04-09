@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMaps Scraper Pro</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>GMaps Scraper <span>Pro</span></h1>
+            <p>Bulk Business Data Extractor</p>
+        </header>
+
+        <main>
+            <div class="control-group">
+                <label for="maxResults">Max Results</label>
+                <input type="number" id="maxResults" value="100" min="1" max="1000">
+            </div>
+
+            <div class="control-group">
+                <label for="delay">Delay Between (seconds)</label>
+                <div class="delay-inputs">
+                    <input type="number" id="minDelay" value="2" min="1" max="10" title="Min delay">
+                    <span>to</span>
+                    <input type="number" id="maxDelay" value="5" min="2" max="20" title="Max delay">
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="label">Found</span>
+                    <span id="count" class="value">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="label">Status</span>
+                    <span id="status" class="value idle">Idle</span>
+                </div>
+            </div>
+
+            <div class="log-container">
+                <div class="log-header">Live Process Log</div>
+                <div id="logs" class="logs">
+                    <div class="log-item info">Ready to start...</div>
+                </div>
+            </div>
+
+            <div class="results-container">
+                <div class="log-header">Scraped Results</div>
+                <div id="resultsList" class="results-list">
+                    <!-- Results will be appended here -->
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="toggleBtn" class="primary">Start Scraping</button>
+                <div style="display: flex; gap: 10px;">
+                    <button id="downloadBtn" class="secondary" disabled style="flex: 1;">Export CSV</button>
+                    <button id="downloadPdfBtn" class="secondary" disabled style="flex: 1;">Export PDF</button>
+                </div>
+                <button id="clearBtn" class="danger">Clear Data</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Ensure you are on a Google Maps search result page.</p>
+        </footer>
+    </div>
+    <script src="jspdf.umd.min.js"></script>
+    <script src="jspdf.plugin.autotable.min.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
