@@ -194,9 +194,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return txt.replace(/[^\x00-\xFF]/g, '').trim() || 'N/A'; 
             };
             
-            const head = [['Name', 'Phone', 'Website', 'Rating', 'Reviews']];
+            const head = [['Name', 'Category', 'Phone', 'Website', 'Rating', 'Reviews']];
             const body = data.map(lead => [
                 cleanPDFText(lead.name),
+                cleanPDFText(lead.category),
                 cleanPDFText(lead.phone),
                 cleanPDFText(lead.website),
                 cleanPDFText(lead.rating),
@@ -208,12 +209,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                     head: head,
                     body: body,
                     startY: 23,
-                    styles: { fontSize: 8, cellPadding: 2, overflow: 'linebreak' },
+                    styles: { fontSize: 7, cellPadding: 2, overflow: 'linebreak' },
                     headStyles: { fillColor: [66, 133, 244] },
                     columnStyles: {
-                        0: { cellWidth: 40 },
-                        1: { cellWidth: 30 },
-                        2: { cellWidth: 60 }
+                        0: { cellWidth: 35 },  // Name
+                        1: { cellWidth: 25 },  // Category
+                        2: { cellWidth: 30 },  // Phone
+                        3: { cellWidth: 50 }   // Website
                     }
                 });
             }
