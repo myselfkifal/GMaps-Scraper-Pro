@@ -138,18 +138,25 @@ function extractLeadData(link) {
     if (ratingContainer) {
         // Find Rating
         rating = ratingContainer.querySelector('span[aria-hidden="true"]')?.textContent || '';
-        if (!rating) { // Fallback to finding decimal pattern
+        if (!rating) { 
              const match = ratingContainer.textContent.match(/(\d[\.,]\d)/);
              if (match) rating = match[1];
         }
         
-        // Find Reviews
-        let reviewNode = ratingContainer.querySelector('span[aria-label]');
-        if (reviewNode) {
-            reviews = reviewNode.getAttribute('aria-label') || '';
-        } else { // Fallback to text matching parentheses
-             const match = ratingContainer.textContent.match(/\(([\d,kK\+]+)\)/);
-             if (match) reviews = match[1];
+        // Find Reviews (Strictly look for numbers inside parentheses to avoid grabbing the star rating by mistake)
+        const match = ratingContainer.textContent.match(/\(([\d,kK\+]+)\)/);
+        if (match) {
+            reviews = match[1];
+        } else {
+            // Fallback to checking aria-labels that specifically say 'review'
+            let reviewNodes = ratingContainer.querySelectorAll('span[aria-label]');
+            for (let node of reviewNodes) {
+                let label = node.getAttribute('aria-label').toLowerCase();
+                if (label.includes('review') && !label.includes('stars')) {
+                    reviews = node.textContent || label;
+                    break;
+                }
+            }
         }
     }
 
