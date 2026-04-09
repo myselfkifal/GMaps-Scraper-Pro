@@ -171,8 +171,21 @@ function extractLeadData(link) {
         reviews = reviews.replace(/[^\d,kK\+]/g, '').trim();
     }
     
-    const category = document.querySelector('button.D0S1Xc')?.textContent || '';
+    // Aggressive Category Extractor
+    let category = document.querySelector('button.D0S1Xc')?.textContent || 
+                   document.querySelector('button[jsaction*="category"]')?.textContent || '';
 
+    if (!category && ratingContainer && ratingContainer.parentElement) {
+        // Usually the category is the first button inside the immediate parent block of the rating container
+        const btns = ratingContainer.parentElement.querySelectorAll('button');
+        for (let btn of btns) {
+            const txt = btn.textContent.trim();
+            if (txt && !['share', 'save', 'nearby', 'send to your phone'].includes(txt.toLowerCase())) {
+                category = txt;
+                break;
+            }
+        }
+    }
     // Clean Phone Number: Remove invisible icons and weird bytes (like \uE0B0 -> à°)
     // Keep only digits, plus, spaces, and hyphens/parentheses
     phone = phone.replace(/[^\d+\s\-\(\)]/g, '').trim();
