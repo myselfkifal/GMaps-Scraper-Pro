@@ -118,7 +118,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Clear Data
     clearBtn.addEventListener('click', async () => {
         if (confirm('Are you sure you want to clear all scraped data?')) {
+            // Clear storage
             await chrome.storage.local.set({ leads: [], status: 'idle' });
+            
+            // Clear UI elements
+            resultsList.innerHTML = '';
+            logsDiv.innerHTML = '<div class="log-item info">Data cleared. Ready...</div>';
+            
             updateUI(0, 'idle');
         }
     });
