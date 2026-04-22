@@ -52,4 +52,6 @@ A Google Chrome Extension that automatically scrapes business data from Google M
 
 ## License
 
-This project is free to use under the MIT License.
+Copyright © 2026 Zulkifal Khan. All rights reserved.
+
+This project is protected by a **Proprietary License**. Unauthorized copying, distribution, or commercial use is strictly prohibited. See the [LICENSE](LICENSE) file for full legal terms.
